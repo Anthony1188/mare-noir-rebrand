@@ -9,16 +9,22 @@ interface ProductCardProps {
   remaining: number;
   bottles: number;
   price: number;
+  onOpen?: () => void;
 }
 
 const SIZES = ["S", "M", "L", "XL", "XXL"];
 
-const ProductCard = ({ image, name, italianName, number, total, remaining, bottles, price }: ProductCardProps) => {
+const ProductCard = ({ image, name, italianName, number, total, remaining, bottles, price, onOpen }: ProductCardProps) => {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
 
   return (
     <div className="group">
-      <div className="relative overflow-hidden bg-card mb-6">
+      <button
+        type="button"
+        onClick={onOpen}
+        aria-label={`View ${name} details`}
+        className="relative overflow-hidden bg-card mb-6 block w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground"
+      >
         <img
           src={image}
           alt={name}
@@ -35,7 +41,7 @@ const ProductCard = ({ image, name, italianName, number, total, remaining, bottl
             Crafted from {bottles} recycled ocean bottles
           </p>
         </div>
-      </div>
+      </button>
 
       <div className="space-y-3">
         <div className="flex items-baseline justify-between">
@@ -74,7 +80,10 @@ const ProductCard = ({ image, name, italianName, number, total, remaining, bottl
           </div>
         </div>
 
-        <button className="w-full border border-foreground text-foreground hover:bg-foreground hover:text-background py-3 text-xs font-body tracking-[0.2em] uppercase transition-all duration-500">
+        <button
+          onClick={onOpen}
+          className="w-full border border-foreground text-foreground hover:bg-foreground hover:text-background py-3 text-xs font-body tracking-[0.2em] uppercase transition-all duration-500"
+        >
           Add to Edition
         </button>
       </div>
