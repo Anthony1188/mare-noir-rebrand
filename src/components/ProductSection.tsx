@@ -1,15 +1,11 @@
 import ProductCard from "./ProductCard";
-import productNoirFront from "@/assets/product-noir-front.jpg";
-import productNoirBack from "@/assets/product-noir-back.jpg";
-import productOceanoFront from "@/assets/product-oceano-front.jpg";
-import productOceanoBack from "@/assets/product-oceano-back.jpg";
-import productSabbiaFront from "@/assets/product-sabbia-front.jpg";
-import productSabbiaBack from "@/assets/product-sabbia-back.jpg";
+import productNoir from "@/assets/product-noir.jpg";
+import productOceano from "@/assets/product-oceano.jpg";
+import productSabbia from "@/assets/product-sabbia.jpg";
 
 const products = [
   {
-    image: productNoirFront,
-    imageBack: productNoirBack,
+    image: productNoir,
     name: "The Noir",
     italianName: "Il Nero",
     number: "018",
@@ -19,8 +15,7 @@ const products = [
     price: 185,
   },
   {
-    image: productOceanoFront,
-    imageBack: productOceanoBack,
+    image: productOceano,
     name: "The Oceano",
     italianName: "L'Oceano",
     number: "042",
@@ -30,8 +25,7 @@ const products = [
     price: 185,
   },
   {
-    image: productSabbiaFront,
-    imageBack: productSabbiaBack,
+    image: productSabbia,
     name: "The Sabbia",
     italianName: "La Sabbia",
     number: "007",

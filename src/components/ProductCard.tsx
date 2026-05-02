@@ -2,7 +2,6 @@ import { useState } from "react";
 
 interface ProductCardProps {
   image: string;
-  imageBack?: string;
   name: string;
   italianName: string;
   number: string;
@@ -14,7 +13,7 @@ interface ProductCardProps {
 
 const SIZES = ["S", "M", "L", "XL", "XXL"];
 
-const ProductCard = ({ image, imageBack, name, italianName, number, total, remaining, bottles, price }: ProductCardProps) => {
+const ProductCard = ({ image, name, italianName, number, total, remaining, bottles, price }: ProductCardProps) => {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
 
   return (
@@ -22,23 +21,13 @@ const ProductCard = ({ image, imageBack, name, italianName, number, total, remai
       <div className="relative overflow-hidden bg-card mb-6">
         <img
           src={image}
-          alt={`${name} — front view`}
+          alt={name}
           loading="lazy"
           width={800}
           height={1000}
-          className="w-full aspect-[4/5] object-cover transition-opacity duration-700 group-hover:opacity-0"
+          className="w-full aspect-[4/5] object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        {imageBack && (
-          <img
-            src={imageBack}
-            alt={`${name} — back view`}
-            loading="lazy"
-            width={800}
-            height={1000}
-            className="absolute inset-0 w-full h-full aspect-[4/5] object-cover opacity-0 transition-opacity duration-700 group-hover:opacity-100"
-          />
-        )}
-        <div className="absolute top-4 left-4 z-10">
+        <div className="absolute top-4 left-4">
           <span className="text-foreground/50 text-xs font-body tracking-[0.2em]">{number}/{total}</span>
         </div>
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-noir/60 to-transparent p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
