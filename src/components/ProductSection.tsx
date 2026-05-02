@@ -1,9 +1,11 @@
+import { useState } from "react";
 import ProductCard from "./ProductCard";
+import ProductDetailModal, { ProductDetail } from "./ProductDetailModal";
 import productNoir from "@/assets/product-noir.jpg";
 import productOceano from "@/assets/product-oceano.jpg";
 import productSabbia from "@/assets/product-sabbia.jpg";
 
-const products = [
+const products: ProductDetail[] = [
   {
     image: productNoir,
     name: "The Noir",
@@ -13,6 +15,8 @@ const products = [
     remaining: 47,
     bottles: 12,
     price: 185,
+    description:
+      "The signature silhouette in deep obsidian. Cut with restraint, finished with a hand-stitched waistband and a refined matte hardware closure.",
   },
   {
     image: productOceano,
@@ -23,6 +27,8 @@ const products = [
     remaining: 73,
     bottles: 12,
     price: 185,
+    description:
+      "Inspired by the deep blue of the Tyrrhenian. A tonal study in Mediterranean light, tailored for both shore and city.",
   },
   {
     image: productSabbia,
@@ -33,10 +39,20 @@ const products = [
     remaining: 91,
     bottles: 12,
     price: 185,
+    description:
+      "The colour of sun-warmed sand at dusk. Soft, muted, unmistakably Italian — engineered from reclaimed ocean fibres.",
   },
 ];
 
 const ProductSection = () => {
+  const [active, setActive] = useState<ProductDetail | null>(null);
+  const [open, setOpen] = useState(false);
+
+  const openProduct = (p: ProductDetail) => {
+    setActive(p);
+    setOpen(true);
+  };
+
   return (
     <section id="edition-i" className="py-24 lg:py-40 px-6 lg:px-12 max-w-7xl mx-auto">
       <div className="text-center mb-20">
@@ -55,9 +71,11 @@ const ProductSection = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
         {products.map((product) => (
-          <ProductCard key={product.name} {...product} />
+          <ProductCard key={product.name} {...product} onOpen={() => openProduct(product)} />
         ))}
       </div>
+
+      <ProductDetailModal product={active} open={open} onOpenChange={setOpen} />
     </section>
   );
 };
